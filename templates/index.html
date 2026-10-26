@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud-Based Smart City Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Smart City Dashboard</h1>
+        <div class="controls">
+            <label for="citySelect">Select City:</label>
+            <select id="citySelect">
+                {% for city in cities %}
+                <option value="{{ city }}">{{ city }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </header>
+
+    <main>
+        <p class="updated">Last updated: <span id="time">--</span></p>
+
+        <section class="cards">
+            <div class="card">
+                <h3>Traffic Congestion</h3>
+                <p class="value" id="traffic">--</p>
+                <div class="bar"><div class="fill" id="trafficBar"></div></div>
+            </div>
+            <div class="card">
+                <h3>Air Quality (AQI)</h3>
+                <p class="value" id="aqi">--</p>
+                <p class="sub" id="aqiCategory">--</p>
+            </div>
+            <div class="card">
+                <h3>Garbage Bin Fill</h3>
+                <p class="value" id="binFill">--</p>
+                <div class="bar"><div class="fill" id="binBar"></div></div>
+            </div>
+            <div class="card">
+                <h3>Water Reservoir</h3>
+                <p class="value" id="water">--</p>
+                <div class="bar"><div class="fill" id="waterBar"></div></div>
+            </div>
+            <div class="card">
+                <h3>Faulty Streetlights</h3>
+                <p class="value" id="lights">--</p>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2>Live Alerts</h2>
+            <ul id="alertList"></ul>
+        </section>
+
+        <section class="panel">
+            <h2>Report a City Problem</h2>
+            <div class="form">
+                <input type="text" id="name" placeholder="Your name">
+                <select id="category">
+                    <option>Pothole</option>
+                    <option>Garbage</option>
+                    <option>Streetlight</option>
+                    <option>Water Leakage</option>
+                    <option>Other</option>
+                </select>
+                <textarea id="message" rows="3" placeholder="Describe the problem..."></textarea>
+                <button id="submitBtn">Submit Complaint</button>
+                <p id="formMsg"></p>
+            </div>
+
+            <h3>Recent Complaints</h3>
+            <ul id="complaintList"></ul>
+        </section>
+    </main>
+
+    <footer>Cloud-Based Smart City Application | Flask + HTML + CSS + JS</footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
